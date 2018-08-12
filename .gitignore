@@ -1,6 +1,6 @@
-*
 *.*
 !*.v
+!*.vh
 !*.md
 !*.txt
 !.gitignore
