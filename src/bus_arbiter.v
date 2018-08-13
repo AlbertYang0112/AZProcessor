@@ -1,22 +1,101 @@
-`include "inc/bus.vh"
 `include "inc/nettype.vh"
+`include "inc/bus.vh"
 `include "inc/stddef.vh"
 
-module BusArbiter(
-    wire input clk,
-    wire input reset,
-    wire input req\_[BUS_OWNER_BUS],
-    reg output grnt\_[BUS_OWNER_BUS],
+module bus_arbiter(
+    input wire clk,
+    input wire reset,
+    input wire m0Req_,
+    input wire m0Grnt_,
+    input wire m1Req_,
+    input wire m1Grnt_,
+    input wire m2Req_,
+    input wire m2Grnt_,
+    input wire m3Req_,
+    input wire m3Grnt_
 )
-    reg owner[BUS_OWNER_BUS] = `BUS_OWNER_MASTER_0;
-    always @(posedge clk or `RESET_EDGE reset) 
+    reg [`BUS_OWNER_BUS]owner = `BUS_OWNER_MASTER_0;
+    always @(*)
+    begin
+        m0Grnt_ = `DISABLE;
+        m1Grnt_ = `DISABLE;
+        m2Grnt_ = `DISABLE;
+        m3Grnt_ = `DISABLE;
+
+        case(owner)
+            `BUS_OWNER_MASTER_0 :
+            begin
+                m0Grnt_ = `ENABLE;
+            end
+            `BUS_OWNER_MASTER_1 :
+            begin
+                m1Grnt_ = `ENABLE;
+            end
+            `BUS_OWNER_MASTER_2 :
+            begin
+                m2Grnt_ = `ENABLE;
+            end
+            `BUS_OWNER_MASTER_3 :
+            begin
+                m3Grnt_ = `ENABLE;
+            end
+        endcase
+    end
+
+    always @(posedge clk or `RESET_EDGE reset)
     begin
         if(reset == `RESET_ENABLE)
         begin
-            owner <= #1 `BUS_OWNER_MASTER_0;   
-        end else
+            owner <= `BUS_OWNER_MASTER_0;
+        end 
+        else
         begin
-            
+            case(owner)
+                `BUS_OWNER_MASTER_0:
+                begin
+                    if(m0Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_0;
+                    else if(m1Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_1;
+                    else if(m2Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_2;
+                    else if(m3Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_3;
+                end
+                `BUS_OWNER_MASTER_1:
+                begin
+                    if(m1Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_1;
+                    else if(m2Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_2;
+                    else if(m3Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_3;
+                    else if(m0Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_0;
+                end
+                `BUS_OWNER_MASTER_2:
+                begin
+                    if(m2Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_2;
+                    else if(m3Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_3;
+                    else if(m0Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_0;
+                    else if(m1Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_1;
+                end
+                `BUS_OWNER_MASTER_3:
+                begin
+                    if(m3Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_3;
+                    else if(m0Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_0;
+                    else if(m1Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_1;
+                    else if(m2Req_ == `ENABLE)
+                        owner <= #1 `BUS_OWNER_MASTER_2;
+                end
+            endcase
         end
     end
 endmodule
