@@ -4,15 +4,15 @@
 
 module bus_arbiter(
     input wire clk,
-    input wire reset,
+    input wire reset_,
     input wire m0Req_,
-    input wire m0Grnt_,
+    output reg m0Grnt_,
     input wire m1Req_,
-    input wire m1Grnt_,
+    output reg m1Grnt_,
     input wire m2Req_,
-    input wire m2Grnt_,
+    output reg m2Grnt_,
     input wire m3Req_,
-    input wire m3Grnt_
+    output reg m3Grnt_
 )
     reg [`BUS_OWNER_BUS]owner = `BUS_OWNER_MASTER_0;
     always @(*)
@@ -42,9 +42,9 @@ module bus_arbiter(
         endcase
     end
 
-    always @(posedge clk or `RESET_EDGE reset)
+    always @(posedge clk or `RESET_EDGE reset_)
     begin
-        if(reset == `RESET_ENABLE)
+        if(reset_ == `RESET_ENABLE)
         begin
             owner <= `BUS_OWNER_MASTER_0;
         end 
