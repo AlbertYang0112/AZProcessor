@@ -51,18 +51,18 @@
 `define CREG_INT_ENABLE_LOC     1
 `define CREG_EXP_CODE_LOC       2:0
 `define CREG_DLY_FLAG_LOC       3
-`define 
-`define BUS_IF_STATE_BNUS 1:0
-`define BUS_IF_STATE_IDLE 2'h0
-`define BUS_IF_STATE_REQ 2'h1
-`define BUS_IF_STATE_ACCESS 2'h2
-`define BUS_IF_STATE_STALL 2'h3
-`define RESET_VECTOR 30'h0
-`define SH_AMOUNT_BUS 4:0
-`define SH_AMOUNT_LOC 4:0
-`define RELEASE_YEAR 8'd18
-`define RELEASE_MOUTH 8'd8
-`define RELEASE_VERSION 8'd1
-`define RELEASE_REVISION 8'd0
+
+`define BUS_IF_STATE_BUS        1:0
+`define BUS_IF_STATE_IDLE       2'h0
+`define BUS_IF_STATE_REQ        2'h1
+`define BUS_IF_STATE_ACCESS     2'h2
+`define BUS_IF_STATE_STALL      2'h3
+`define RESET_VECTOR            30'h0
+`define SH_AMOUNT_BUS           4:0
+`define SH_AMOUNT_LOC           4:0
+`define RELEASE_YEAR            8'd18
+`define RELEASE_MOUTH           8'd8
+`define RELEASE_VERSION         8'd1
+`define RELEASE_REVISION        8'd0
 
 `endif
