@@ -1,7 +1,8 @@
 `include "inc/nettype.vh"
-`include "inc/golbal_config.vh"
+`include "inc/global_config.vh"
 `include "inc/isa.vh"
 `include "inc/cpu.vh"
+`include "inc/stddef.vh"
 
 module ex_reg(
     input wire                  clk,
