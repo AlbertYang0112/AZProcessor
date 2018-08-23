@@ -4,15 +4,15 @@
 `include "inc/cpu.vh"
 
 module gpr(
-    input wire clk,
-    input wire reset_,
-    input wire [`REG_ADDR_BUS] RdAddr0,
-    output wire [`WORD_DATA_BUS] RdData0,
-    input wire [`REG_ADDR_BUS] RdAddr1,
-    output wire [`WORD_DATA_BUS] RdData1,
-    input wire WE_,
-    input wire [`REG_ADDR_BUS] WrAddr,
-    input wire [`WORD_DATA_BUS] WrData
+    input  wire                     clk,
+    input  wire                     reset_,
+    input  wire [`REG_ADDR_BUS]     RdAddr0,
+    output wire [`WORD_DATA_BUS]    RdData0,
+    input  wire [`REG_ADDR_BUS]     RdAddr1,
+    output wire [`WORD_DATA_BUS]    RdData1,
+    input  wire                     WE_,
+    input  wire [`REG_ADDR_BUS]     WrAddr,
+    input  wire [`WORD_DATA_BUS]    WrData
 )
 
     reg [`WORD_DATA_BUS] GPR[REG_NUM];

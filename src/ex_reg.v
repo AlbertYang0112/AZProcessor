@@ -44,7 +44,7 @@ module ex_reg(
             EXEn        <= #1 `DISABLE;
             EXBrFlag    <= #1 `DISABLE;
             EXMemOp     <= #1 `MEM_OP_NOP;
-            EXMemWrData    <= #1 `WORD_DATA_W'h0;
+            EXMemWrData <= #1 `WORD_DATA_W'h0;
             EXCtrlOp    <= #1 `CTRL_OP_NOP;
             EXDstAddr   <= #1 `REG_ADDR_W'd0;
             EXGPRWE_    <= #1 `DISABLE_;
@@ -61,7 +61,7 @@ module ex_reg(
                     EXEn        <= #1 `DISABLE;
                     EXBrFlag    <= #1 `DISABLE;
                     EXMemOp     <= #1 `MEM_OP_NOP;
-                    EXMemWrData    <= #1 `WORD_DATA_W'h0;
+                    EXMemWrData <= #1 `WORD_DATA_W'h0;
                     EXCtrlOp    <= #1 `CTRL_OP_NOP;
                     EXDstAddr   <= #1 `REG_ADDR_W'd0;
                     EXGPRWE_    <= #1 `DISABLE_;
@@ -74,7 +74,7 @@ module ex_reg(
                     EXEn        <= #1 IDEn;
                     EXBrFlag    <= #1 IDBrFlag;
                     EXMemOp     <= #1 `MEM_OP_NOP;
-                    EXMemWrData    <= #1 `WORD_DATA_W'h0;
+                    EXMemWrData <= #1 `WORD_DATA_W'h0;
                     EXCtrlOp    <= #1 `CTRL_OP_NOP;
                     EXDstAddr   <= #1 `REG_ADDR_W'd0;
                     EXGPRWE_    <= #1 `DISABLE_;
@@ -87,7 +87,7 @@ module ex_reg(
                     EXEn        <= #1 IDEn;
                     EXBrFlag    <= #1 IDBrFlag;
                     EXMemOp     <= #1 `MEM_OP_NOP;
-                    EXMemWrData    <= #1 `WORD_DATA_W'h0;
+                    EXMemWrData <= #1 `WORD_DATA_W'h0;
                     EXCtrlOp    <= #1 `CTRL_OP_NOP;
                     EXDstAddr   <= #1 `REG_ADDR_W'd0;
                     EXGPRWE_    <= #1 `DISABLE_;
@@ -100,7 +100,7 @@ module ex_reg(
                     EXEn        <= #1 IDEn;
                     EXBrFlag    <= #1 IDBrFlag;
                     EXMemOp     <= #1 IDMemOp;
-                    EXMemWrData    <= #1 IDMemWrData;
+                    EXMemWrData <= #1 IDMemWrData;
                     EXCtrlOp    <= #1 IDCtrlOp;
                     EXDstAddr   <= #1 IDDstAddr;
                     EXGPRWE_    <= #1 IDGPRWE_;

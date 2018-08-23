@@ -4,35 +4,35 @@
 `include "cpu.vh"
 
 module if_stage(
-    input wire clk,
-    input wire reset_,
+    input wire                      clk,
+    input wire                      reset_,
 
-    input wire Stall,
-    input wire Flush,
-    input wire [`WORD_ADDR_BUS] NewPC,
-    input wire BrTaken,
-    input wire [`WORD_ADDR_BUS] BrAddr,
+    input wire                      Stall,
+    input wire                      Flush,
+    input wire [`WORD_ADDR_BUS]     NewPC,
+    input wire                      BrTaken,
+    input wire [`WORD_ADDR_BUS]     BrAddr,
 
-    output wire [`WORD_ADDR_BUS] IFPC,
-    output wire [`WORD_DATA_BUS] IFInsn,
-    output wire IFEn,
+    output wire [`WORD_ADDR_BUS]    IFPC,
+    output wire [`WORD_DATA_BUS]    IFInsn,
+    output wire                     IFEn,
 
-    output wire Busy,
+    output wire                     Busy,
 
-    input wire [`WORD_DATA_BUS] SPMRdData,
-    output wire [`WORD_ADDR_BUS] SPMAddr,
-    output wire SPMAs_,
-    output wire SPMRW,
-    output wire [`WORD_DATA_BUS] SPMWrData,
+    input wire [`WORD_DATA_BUS]     SPMRdData,
+    output wire [`WORD_ADDR_BUS]    SPMAddr,
+    output wire                     SPMAs_,
+    output wire                     SPMRW,
+    output wire [`WORD_DATA_BUS]    SPMWrData,
 
-    input wire [`WORD_DATA_BUS] BusRdData,
-    input wire BusRdy_,
-    input wire BusGrnt_,
-    output wire BusReq_,
-    output wire [`WORD_ADDR_BUS] BusAddr,
-    output wire BusAs_,
-    output wire BusRW,
-    output wire [`WORD_DATA_BUS] BusWrData
+    input wire [`WORD_DATA_BUS]     BusRdData,
+    input wire                      BusRdy_,
+    input wire                      BusGrnt_,
+    output wire                     BusReq_,
+    output wire [`WORD_ADDR_BUS]    BusAddr,
+    output wire                     BusAs_,
+    output wire                     BusRW,
+    output wire [`WORD_DATA_BUS]    BusWrData
 )
 
     wire [`WORD_DATA_BUS] Insn;

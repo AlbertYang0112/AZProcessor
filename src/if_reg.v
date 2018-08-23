@@ -4,15 +4,15 @@
 `include "cpu.vh"
 
 module if_reg(
-    input wire clk,
-    input wire reset_,
+    input wire                  clk,
+    input wire                  reset_,
 
     input wire [`WORD_DATA_BUS] Insn,
 
-    input wire Stall,
-    input wire Flush,
+    input wire                  Stall,
+    input wire                  Flush,
     input wire [`WORD_ADDR_BUS] NewPC,
-    input wire BrTaken,
+    input wire                  BrTaken,
     input wire [`WORD_ADDR_BUS] BrAddr,
 
     output reg [`WORD_ADDR_BUS] IFPC,

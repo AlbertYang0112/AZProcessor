@@ -4,17 +4,17 @@
 `include "inc/spm.vh"
 
 module spm(
-    input wire clk,
-    input wire [`SPM_ADDR_BUS] IFSPMAddr,
-    input wire IFSPMAs_,
-    input wire IFSPMRW,
-    input wire [`WORD_DATA_BUS] IFSPMWrData,
-    output wire [`WORD_DATA_BUS] IFSPMRdData,
-    input wire [`SPM_ADDR_BUS] MEMSPMAddr,
-    input wire MEMSPMAs_,
-    input wire MEMSPMRW,
-    input wire [`WORD_DATA_BUS] MEMSPMWrData,
-    output wire [`WORD_DATA_BUS] MEMSPMRdData,
+    input wire                      clk,
+    input wire [`SPM_ADDR_BUS]      IFSPMAddr,
+    input wire                      IFSPMAs_,
+    input wire                      IFSPMRW,
+    input wire [`WORD_DATA_BUS]     IFSPMWrData,
+    output wire [`WORD_DATA_BUS]    IFSPMRdData,
+    input wire [`SPM_ADDR_BUS]      MEMSPMAddr,
+    input wire                      MEMSPMAs_,
+    input wire                      MEMSPMRW,
+    input wire [`WORD_DATA_BUS]     MEMSPMWrData,
+    output wire [`WORD_DATA_BUS]    MEMSPMRdData,
 )
 
     reg wea;

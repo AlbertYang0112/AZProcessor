@@ -4,33 +4,33 @@
 `include "inc/bus.vh"
 
 module bus_if(
-    input wire clk,
-    input wire reset_,
+    input wire                      clk,
+    input wire                      reset_,
 
-    input wire Stall,
-    input wire Flush,
-    output reg Busy,
+    input wire                      Stall,
+    input wire                      Flush,
+    output reg                      Busy,
 
-    input wire [`WORD_ADDR_BUS] Addr,
-    input wire As_,
-    input wire RW,
-    input wire [`WORD_DATA_BUS] WrData,
-    output reg [`WORD_DATA_BUS] RdData,
+    input wire [`WORD_ADDR_BUS]     Addr,
+    input wire                      As_,
+    input wire                      RW,
+    input wire [`WORD_DATA_BUS]     WrData,
+    output reg [`WORD_DATA_BUS]     RdData,
 
-    input wire [`WORD_DATA_BUS] SPMRdData,
-    output reg [`WORD_ADDR_BUS] SPMAddr,
-    output reg SPMAs_,
-    output wire SPMRW,
-    output wire [`WORD_DATA_BUS] SPMWrData,
+    input wire [`WORD_DATA_BUS]     SPMRdData,
+    output reg [`WORD_ADDR_BUS]     SPMAddr,
+    output reg                      SPMAs_,
+    output wire                     SPMRW,
+    output wire [`WORD_DATA_BUS]    SPMWrData,
 
-    input wire [`WORD_DATA_BUS] BusRdData,
-    input wire BusRdy_,
-    input wire BusGrnt_,
-    output reg BusReq_,
-    output wire [`WORD_ADDR_BUS] BusAddr,
-    output reg BusAs_,
-    output wire BusRW,
-    output wire [`WORD_DATA_BUS] BusWrData,
+    input wire [`WORD_DATA_BUS]     BusRdData,
+    input wire                      BusRdy_,
+    input wire                      BusGrnt_,
+    output reg                      BusReq_,
+    output wire [`WORD_ADDR_BUS]    BusAddr,
+    output reg                      BusAs_,
+    output wire                     BusRW,
+    output wire [`WORD_DATA_BUS]    BusWrData,
 )
 
     reg [`BUS_IF_STATE_BUS] state;

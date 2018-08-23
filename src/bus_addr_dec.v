@@ -3,15 +3,15 @@
 `include "inc/stddef.vh"
 
 module bus_addr_dec(
-    input wire [`WORD_ADDR_BUS]sAddr,
-    output reg s0CS_,
-    output reg s1CS_,
-    output reg s2CS_,
-    output reg s3CS_,
-    output reg s4CS_,
-    output reg s5CS_,
-    output reg s6CS_,
-    output reg s7CS_
+    input  wire [`WORD_ADDR_BUS]    sAddr,
+    output reg                      s0CS_,
+    output reg                      s1CS_,
+    output reg                      s2CS_,
+    output reg                      s3CS_,
+    output reg                      s4CS_,
+    output reg                      s5CS_,
+    output reg                      s6CS_,
+    output reg                      s7CS_
 )
 wire [`BUS_SLAVE_INDEX_BUS] s_index = sAddr[`BUS_SLAVE_INDEX_LOC];
 
