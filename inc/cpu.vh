@@ -5,6 +5,7 @@
 `define REG_ADDR_W              5
 `define REG_ADDR_BUS            4:0
 `define CPU_IRQ_CH              8
+`define CPU_IRQ_BUS             7:0
  
 `define ALU_OP_W                4
 `define ALU_OP_BUS              3:0
