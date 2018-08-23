@@ -1,6 +1,7 @@
 `include "inc/nettype.vh"
 `include "inc/global_config.vh"
 `include "inc/cpu.vh"
+`include "inc/isa.vh"
 
 module id_stage(
     input  wire                     clk,
