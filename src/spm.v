@@ -10,11 +10,11 @@ module spm(
     input wire                      IFSPMRW,
     input wire [`WORD_DATA_BUS]     IFSPMWrData,
     output wire [`WORD_DATA_BUS]    IFSPMRdData,
-    input wire [`SPM_ADDR_BUS]      MEMSPMAddr,
-    input wire                      MEMSPMAs_,
-    input wire                      MEMSPMRW,
-    input wire [`WORD_DATA_BUS]     MEMSPMWrData,
-    output wire [`WORD_DATA_BUS]    MEMSPMRdData,
+    input wire [`SPM_ADDR_BUS]      MemSPMAddr,
+    input wire                      MemSPMAs_,
+    input wire                      MemSPMRW,
+    input wire [`WORD_DATA_BUS]     MemSPMWrData,
+    output wire [`WORD_DATA_BUS]    MemSPMRdData,
 )
 
     reg wea;
@@ -30,7 +30,7 @@ module spm(
         begin
             wea = `MEM_DISABLE;
         end
-        if((MEMSPMAS_ == `ENABLE) && (MEMSPMRW == `WRITE))
+        if((MemSPMAS_ == `ENABLE) && (MemSPMRW == `WRITE))
         begin
             web = `MEM_ENABLE;
         end

@@ -12,12 +12,12 @@ module ctrl(
     output reg  [`WORD_DATA_BUS]    CRegRdData,
     output reg  [`CPU_EXE_MODE_BUS] ExeMode,
 
-    input  wire [`CPU_IRQ_BUS]    IRQ,
+    input  wire [`CPU_IRQ_BUS]      IRQ,
     output reg                      IntDetect,
 
     input  wire [`WORD_ADDR_BUS]    IDPC,
 
-    input  wire [`WORD_ADDR_BUS]    MEMPC,
+    input  wire [`WORD_ADDR_BUS]    MemPC,
     input  wire                     MemEn,
     input  wire                     MemBrFlag,
     input  wire [`CTRL_OP_BUS]      MemCtrlOp,
