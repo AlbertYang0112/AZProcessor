@@ -36,6 +36,7 @@ module ctrl(
     output wire                     MemStall,
 
     output wire                     IFFlush,
+    output wire                     IDFlush,
     output wire                     EXFlush,
     output wire                     MemFlush,
     output reg  [`WORD_ADDR_BUS]    NewPC,
