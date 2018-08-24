@@ -2,6 +2,7 @@
 `include "global_config.vh"
 `include "stddef.vh"
 `include "cpu.vh"
+`include "spm.vh"
 
 module if_stage(
     input wire                      clk,
@@ -20,12 +21,12 @@ module if_stage(
     output wire                     Busy,
 
     input wire [`WORD_DATA_BUS]     SPMRdData,
-    output wire [`WORD_ADDR_BUS]    SPMAddr,
+    output wire [`SPM_ADDR_BUS]     SPMAddr,
     output wire                     SPMAs_,
     output wire                     SPMRW,
     output wire [`WORD_DATA_BUS]    SPMWrData,
 
-    input wire [`WORD_DATA_BUS]     BusRdData,
+    input wire [`WORD_ADDR_BUS]     BusRdData,
     input wire                      BusRdy_,
     input wire                      BusGrnt_,
     output wire                     BusReq_,
@@ -69,7 +70,7 @@ module if_stage(
 
     if_reg IFReg(
         .clk(clk),
-        .reset(reset_),
+        .reset_(reset_),
 
         .Insn(Insn),
 

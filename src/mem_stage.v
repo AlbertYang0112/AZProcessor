@@ -2,6 +2,7 @@
 `include "stddef.vh"
 `include "global_config.vh"
 `include "cpu.vh"
+`include "spm.vh"
 
 module mem_stage(
     input  wire                     clk,
@@ -23,7 +24,7 @@ module mem_stage(
     output wire                     Busy,
 
     input  wire [`WORD_DATA_BUS]    SPMRdData,
-    output wire [`WORD_ADDR_BUS]    SPMAddr,
+    output wire [`SPM_ADDR_BUS]     SPMAddr,
     output wire                     SPMAs_,
     output wire                     SPMRW,
     output wire [`WORD_DATA_BUS]    SPMWrData,
@@ -44,7 +45,7 @@ module mem_stage(
     input  wire [`WORD_ADDR_BUS]    EXPC,
     input  wire                     EXBrFlag,
     input  wire [`CTRL_OP_BUS]      EXCtrlOp,
-    input  wire [`WORD_ADDR_BUS]    EXDstAddr,
+    input  wire [`REG_ADDR_BUS]     EXDstAddr,
     input  wire                     EXGPRWE_,
     input  wire [`ISA_EXP_BUS]      EXExpCode
 );
@@ -52,12 +53,12 @@ module mem_stage(
     wire [`WORD_ADDR_BUS] Addr;
     wire As_;
     wire RW;
-    wire WrData;
-    wire RdData;
+    wire [`WORD_DATA_BUS] WrData;
+    wire [`WORD_DATA_BUS] RdData;
     wire MissAlign;
 
     bus_if BusIf(
-        .clk(c),
+        .clk(clk),
         .reset_(reset_),
 
         .Stall(Stall),

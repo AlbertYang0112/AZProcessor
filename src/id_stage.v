@@ -29,8 +29,8 @@ module id_stage(
     
     input  wire [`WORD_DATA_BUS]    GPRRdData0,
     input  wire [`WORD_DATA_BUS]    GPRRdData1,
-    output wire [`WORD_ADDR_BUS]    GPRRdAddr0,
-    output wire [`WORD_ADDR_BUS]    GPRRdAddr1,
+    output wire [`REG_ADDR_BUS]     GPRRdAddr0,
+    output wire [`REG_ADDR_BUS]     GPRRdAddr1,
 
     input  wire [`CPU_EXE_MODE_BUS] ExeMode,
     input  wire [`WORD_DATA_BUS]    CRegRdData,

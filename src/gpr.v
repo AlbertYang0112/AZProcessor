@@ -15,7 +15,7 @@ module gpr(
     input  wire [`WORD_DATA_BUS]    WrData
 );
 
-    reg [`WORD_DATA_BUS] GPR[`REG_ADDR_BUS];
+    reg [`WORD_DATA_BUS] GPR[0 : `REG_NUM];
     integer i;
     
     // Read access

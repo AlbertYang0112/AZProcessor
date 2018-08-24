@@ -32,7 +32,7 @@ module ex_stage(
     input  wire [`MEM_OP_BUS]       IDMemOp,
     input  wire [`WORD_DATA_BUS]    IDMemWrData,
     input  wire [`CTRL_OP_BUS]      IDCtrlOp,
-    input  wire [`WORD_ADDR_BUS]    IDDstAddr,
+    input  wire [`REG_ADDR_BUS]     IDDstAddr,
     input  wire                     IDGPRWE_,
     input  wire [`ISA_EXP_BUS]      IDExpCode
 );

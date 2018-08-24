@@ -8,7 +8,7 @@ module mem_reg(
     input  wire                     clk,
     input  wire                     reset_,
 
-    input  wire                     Out,
+    input  wire [`WORD_DATA_BUS]    Out,
     input  wire                     MissAlign,
 
     input  wire                     Stall,

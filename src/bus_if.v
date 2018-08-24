@@ -2,6 +2,7 @@
 `include "global_config.vh"
 `include "cpu.vh"
 `include "bus.vh"
+`include "spm.vh"
 
 module bus_if(
     input wire                      clk,
@@ -18,7 +19,7 @@ module bus_if(
     output reg [`WORD_DATA_BUS]     RdData,
 
     input wire [`WORD_DATA_BUS]     SPMRdData,
-    output reg [`WORD_ADDR_BUS]     SPMAddr,
+    output wire [`SPM_ADDR_BUS]     SPMAddr,
     output reg                      SPMAs_,
     output wire                     SPMRW,
     output wire [`WORD_DATA_BUS]    SPMWrData,
@@ -38,6 +39,8 @@ module bus_if(
     wire [`BUS_SLAVE_INDEX_BUS] sIndex;
 
     assign sIndex = Addr[`BUS_SLAVE_INDEX_LOC];
+    
+    assign SPMAddr = Addr;
     assign SPMRW = RW;
     assign SPMWrData = WrData;
 

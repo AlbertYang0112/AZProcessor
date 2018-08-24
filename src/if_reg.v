@@ -30,9 +30,9 @@ module if_reg(
         end
         else
         begin
-            if(stall == `DISABLE)
+            if(Stall == `DISABLE)
             begin
-                if(flush == `ENABLE)
+                if(Flush == `ENABLE)
                 begin
                     IFPC    <= #1 NewPC;
                     IFInsn  <= #1 `ISA_NOP;

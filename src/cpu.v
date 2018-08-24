@@ -3,6 +3,7 @@
 `include "stddef.vh"
 `include "cpu.vh"
 `include "isa.vh"
+`include "spm.vh"
 
 module cpu(
     input  wire                     clk,
@@ -39,7 +40,7 @@ module cpu(
     wire                    IFBusy;
 
     wire [`WORD_DATA_BUS]   IFSPMRdData;
-    wire [`WORD_ADDR_BUS]   IFSPMAddr;
+    wire [`SPM_ADDR_BUS]   IFSPMAddr;
     wire                    IFSPMAs_;
     wire                    IFSPMRW;
     wire [`WORD_DATA_BUS]   IFSPMWrData;
@@ -92,8 +93,8 @@ module cpu(
     wire [`ISA_EXP_BUS]      IDExpCode;
     wire [`WORD_DATA_BUS]    GPRRdData0;
     wire [`WORD_DATA_BUS]    GPRRdData1;
-    wire [`WORD_ADDR_BUS]    GPRRdAddr0;
-    wire [`WORD_ADDR_BUS]    GPRRdAddr1;
+    wire [`REG_ADDR_BUS]     GPRRdAddr0;
+    wire [`REG_ADDR_BUS]     GPRRdAddr1;
     wire [`CPU_EXE_MODE_BUS] ExeMode;
     wire [`WORD_DATA_BUS]    CRegRdData;
     wire [`REG_ADDR_BUS]     CRegRdAddr;
@@ -102,8 +103,6 @@ module cpu(
     wire [`REG_ADDR_BUS]     EXDstAddr;
     wire                     EXGPRWE_;
     wire [`WORD_DATA_BUS]    MemFwdData;
-    //wire [`WORD_ADDR_BUS]    BrAddr;
-    //wire                     BrTaken;
     wire                     LDHazard;
 
     id_stage IDStage(
@@ -156,15 +155,12 @@ module cpu(
     wire                     EXFlush;
 
     wire [`WORD_ADDR_BUS]    EXPC;
-    //wire                     EXEn;
     wire                     EXBrFlag;
     wire [`MEM_OP_BUS]       EXMemOp;
     wire [`WORD_DATA_BUS]    EXMemWrData;
     wire [`CTRL_OP_BUS]      EXCtrlOp;
-    //wire                     EXGPRWE_;
     wire [`ISA_EXP_BUS]      EXExpCode;
     wire [`WORD_DATA_BUS]    EXOut;
-    //wire [`WORD_DATA_BUS]    EXFwdData;
     ex_stage EXStage(
         .clk(clk),
         .reset_(reset_),
@@ -202,7 +198,6 @@ module cpu(
     wire                     MemStall;
     wire                     MemFlush;
 
-    //wire [`WORD_DATA_BUS]    MemFwdData;
     wire [`WORD_ADDR_BUS]    MemPC;
     wire                     MemEn;
     wire                     MemBrFlag;
@@ -213,7 +208,7 @@ module cpu(
     wire [`WORD_DATA_BUS]    MemOut;
     wire                     MemBusy;
     wire [`WORD_DATA_BUS]    MemSPMRdData;
-    wire [`WORD_ADDR_BUS]    MemSPMAddr;
+    wire [`SPM_ADDR_BUS]     MemSPMAddr;
     wire                     MemSPMAs_;
     wire                     MemSPMRW;
     wire [`WORD_DATA_BUS]    MemSPMWrData;
