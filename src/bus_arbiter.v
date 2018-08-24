@@ -1,6 +1,7 @@
-`include "inc/nettype.vh"
-`include "inc/bus.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "bus.vh"
+`include "stddef.vh"
 
 module bus_arbiter(
     input wire clk,
@@ -13,7 +14,7 @@ module bus_arbiter(
     output reg m2Grnt_,
     input wire m3Req_,
     output reg m3Grnt_
-)
+);
     reg [`BUS_OWNER_BUS]owner = `BUS_OWNER_MASTER_0;
     always @(*)
     begin

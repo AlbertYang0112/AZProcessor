@@ -1,8 +1,8 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/isa.vh"
-`include "inc/cpu.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "isa.vh"
+`include "cpu.vh"
+`include "stddef.vh"
 
 module ex_reg(
     input wire                  clk,
@@ -35,9 +35,9 @@ module ex_reg(
     output reg                  EXGPRWE_,
     output reg [`ISA_EXP_BUS]   EXExpCode,
     output reg [`WORD_DATA_BUS] EXOut
-)
+);
 
-    always @(posedge clk or `RESER_EDGE reset_)
+    always @(posedge clk or `RESET_EDGE reset_)
     begin
         if(reset_ == `RESET_ENABLE)
         begin

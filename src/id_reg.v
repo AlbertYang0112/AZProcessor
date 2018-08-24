@@ -1,6 +1,6 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/cpu.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "cpu.vh"
 
 module id_reg(
     input  wire                     clk,
@@ -35,11 +35,11 @@ module id_reg(
     output reg  [`REG_ADDR_BUS]     IDDstAddr,
     output reg                      IDGPRWE_,
     output reg  [`ISA_EXP_BUS]      IDExpCode
-)
+);
 
     always @(posedge clk or `RESET_EDGE reset_)
     begin
-        if(reset_ == `RESET_EDGE)
+        if(reset_ == `RESET_ENABLE)
         begin
             IDPC        <= #1 `WORD_ADDR_W'h0;
             IDEn        <= #1 `DISABLE;

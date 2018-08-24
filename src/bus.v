@@ -1,6 +1,6 @@
-`include "inc/nettype.vh"
-`include "inc/bus.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "bus.vh"
+`include "stddef.vh"
 
 module bus(
     input wire                      clk,
@@ -58,88 +58,88 @@ module bus(
     input wire                      s6Rdy_,
     input wire                      s7Rdy_,
     output wire [`WORD_DATA_BUS]    mRdData,
-    output wire                     mRdy_,
-)
+    output wire                     mRdy_
+);
 
     bus_arbiter BusArbiter(
-        .clk = clk,
-        .reset_ = reset_,
-        .m0Req_ = m0Req_,
-        .m1Req_ = m1Req_,
-        .m2Req_ = m2Req_,
-        .m3Req_ = m3Req_,
-        .m0Grnt_ = m0Grnt_,
-        .m1Grnt_ = m1Grnt_,
-        .m2Grnt_ = m2Grnt_,
-        .m3Grnt_ = m3Grnt_,
+        .clk(clk),
+        .reset_(reset_),
+        .m0Req_(m0Req_),
+        .m1Req_(m1Req_),
+        .m2Req_(m2Req_),
+        .m3Req_(m3Req_),
+        .m0Grnt_(m0Grnt_),
+        .m1Grnt_(m1Grnt_),
+        .m2Grnt_(m2Grnt_),
+        .m3Grnt_(m3Grnt_)
     );
     
     bus_master_mux BusMasterMux(
-        .m0Addr = m0Addr,
-        .m1Addr = m1Addr,
-        .m2Addr = m2Addr,
-        .m3Addr = m3Addr,
-        .m0As_ = m0As_,
-        .m1As_ = m1As_,
-        .m2As_ = m2As_,
-        .m3As_ = m3As_,
-        .m0RW = m0RW,
-        .m1RW = m1RW,
-        .m2RW = m2RW,
-        .m3RW = m3RW,
-        .m0Data = m0Data,
-        .m1Data = m1Data,
-        .m2Data = m2Data,
-        .m3Data = m3Data,
-        .m0Grnt_ = m0Grnt_,
-        .m1Grnt_ = m1Grnt_,
-        .m2Grnt_ = m2Grnt_,
-        .m3Grnt_ = m3Grnt_,
-        .sAddr = sAddr,
-        .sAs_ = sAs_,
-        .sRW = sRW,
-        .sData = sData
+        .m0Addr(m0Addr),
+        .m1Addr(m1Addr),
+        .m2Addr(m2Addr),
+        .m3Addr(m3Addr),
+        .m0As_(m0As_),
+        .m1As_(m1As_),
+        .m2As_(m2As_),
+        .m3As_(m3As_),
+        .m0RW(m0RW),
+        .m1RW(m1RW),
+        .m2RW(m2RW),
+        .m3RW(m3RW),
+        .m0Data(m0Data),
+        .m1Data(m1Data),
+        .m2Data(m2Data),
+        .m3Data(m3Data),
+        .m0Grnt_(m0Grnt_),
+        .m1Grnt_(m1Grnt_),
+        .m2Grnt_(m2Grnt_),
+        .m3Grnt_(m3Grnt_),
+        .sAddr(sAddr),
+        .sAs_(sAs_),
+        .sRW(sRW),
+        .sData(sData)
     );
 
     bus_addr_dec BusAddrDec(
-        .sAddr = sAddr,
-        .s0CS_ = s0CS_,
-        .s1CS_ = s1CS_,
-        .s2CS_ = s2CS_,
-        .s3CS_ = s3CS_,
-        .s4CS_ = s4CS_,
-        .s5CS_ = s5CS_,
-        .s6CS_ = s6CS_,
-        .s7CS_ = s7CS_
+        .sAddr(sAddr),
+        .s0CS_(s0CS_),
+        .s1CS_(s1CS_),
+        .s2CS_(s2CS_),
+        .s3CS_(s3CS_),
+        .s4CS_(s4CS_),
+        .s5CS_(s5CS_),
+        .s6CS_(s6CS_),
+        .s7CS_(s7CS_)
     );
 
     bus_slave_mux BusSlaveMux(
-        .s0CS_ = s0CS_,
-        .s1CS_ = s1CS_,
-        .s2CS_ = s2CS_,
-        .s3CS_ = s3CS_,
-        .s4CS_ = s4CS_,
-        .s5CS_ = s5CS_,
-        .s6CS_ = s6CS_,
-        .s7CS_ = s7CS_,
-        .s0RdData = s0RdData,
-        .s1RdData = s1RdData,
-        .s2RdData = s2RdData,
-        .s3RdData = s3RdData,
-        .s4RdData = s4RdData,
-        .s5RdData = s5RdData,
-        .s6RdData = s6RdData,
-        .s7RdData = s7RdData,
-        .s0Rdy_ = s0Rdy_,
-        .s1Rdy_ = s1Rdy_,
-        .s2Rdy_ = s2Rdy_,
-        .s3Rdy_ = s3Rdy_,
-        .s4Rdy_ = s4Rdy_,
-        .s5Rdy_ = s5Rdy_,
-        .s6Rdy_ = s6Rdy_,
-        .s7Rdy_ = s7Rdy_,
-        .mRdData = mRdData,
-        .mRdy_ = mRdy_
+        .s0CS_(s0CS_),
+        .s1CS_(s1CS_),
+        .s2CS_(s2CS_),
+        .s3CS_(s3CS_),
+        .s4CS_(s4CS_),
+        .s5CS_(s5CS_),
+        .s6CS_(s6CS_),
+        .s7CS_(s7CS_),
+        .s0RdData(s0RdData),
+        .s1RdData(s1RdData),
+        .s2RdData(s2RdData),
+        .s3RdData(s3RdData),
+        .s4RdData(s4RdData),
+        .s5RdData(s5RdData),
+        .s6RdData(s6RdData),
+        .s7RdData(s7RdData),
+        .s0Rdy_(s0Rdy_),
+        .s1Rdy_(s1Rdy_),
+        .s2Rdy_(s2Rdy_),
+        .s3Rdy_(s3Rdy_),
+        .s4Rdy_(s4Rdy_),
+        .s5Rdy_(s5Rdy_),
+        .s6Rdy_(s6Rdy_),
+        .s7Rdy_(s7Rdy_),
+        .mRdData(mRdData),
+        .mRdy_(mRdy_)
     );
 
 

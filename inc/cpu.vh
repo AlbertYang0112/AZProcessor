@@ -62,7 +62,7 @@
 `define SH_AMOUNT_BUS           4:0
 `define SH_AMOUNT_LOC           4:0
 `define RELEASE_YEAR            8'd18
-`define RELEASE_MOUTH           8'd8
+`define RELEASE_MONTH           8'd8
 `define RELEASE_VERSION         8'd1
 `define RELEASE_REVISION        8'd0
 

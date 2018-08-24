@@ -1,6 +1,6 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "stddef.vh"
 `include "cpu.vh"
 
 module if_reg(
@@ -17,8 +17,8 @@ module if_reg(
 
     output reg [`WORD_ADDR_BUS] IFPC,
     output reg [`WORD_DATA_BUS] IFInsn,
-    output regFIFEn
-)
+    output reg                  IFEn
+);
 
     always @(posedge clk or `RESET_EDGE reset_)
     begin

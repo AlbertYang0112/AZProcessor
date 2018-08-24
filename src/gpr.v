@@ -1,7 +1,7 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/stddef.vh"
-`include "inc/cpu.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "stddef.vh"
+`include "cpu.vh"
 
 module gpr(
     input  wire                     clk,
@@ -13,9 +13,9 @@ module gpr(
     input  wire                     WE_,
     input  wire [`REG_ADDR_BUS]     WrAddr,
     input  wire [`WORD_DATA_BUS]    WrData
-)
+);
 
-    reg [`WORD_DATA_BUS] GPR[REG_NUM];
+    reg [`WORD_DATA_BUS] GPR[`REG_ADDR_BUS];
     integer i;
     
     // Read access
@@ -26,14 +26,14 @@ module gpr(
     begin
         if(reset_ == `RESET_ENABLE)
         begin
-            for(i = 0; i < `REG_NUM; i++)
+            for(i = 0; i < `REG_NUM; i = i + 1)
             begin
                 GPR[i] <= #1 `WORD_DATA_W'h0;
             end
         end
         else
         begin
-            if(WE_ == `EANBLE_)
+            if(WE_ == `ENABLE_)
             begin
                 GPR[WrAddr] <= #1 WrData;
             end

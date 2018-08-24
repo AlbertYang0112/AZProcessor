@@ -1,7 +1,7 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/cpu.vh"
-`include "inc/bus.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "cpu.vh"
+`include "bus.vh"
 
 module bus_if(
     input wire                      clk,
@@ -27,15 +27,15 @@ module bus_if(
     input wire                      BusRdy_,
     input wire                      BusGrnt_,
     output reg                      BusReq_,
-    output wire [`WORD_ADDR_BUS]    BusAddr,
+    output reg  [`WORD_ADDR_BUS]    BusAddr,
     output reg                      BusAs_,
-    output wire                     BusRW,
-    output wire [`WORD_DATA_BUS]    BusWrData,
-)
+    output reg                      BusRW,
+    output reg  [`WORD_DATA_BUS]    BusWrData
+);
 
-    reg [`BUS_IF_STATE_BUS] state;
-    reg [`WORD_DATA_BUS] RdBuf;
-    reg [`BUS_SLAVE_INDEX_BUS] sIndex;
+    reg  [`BUS_IF_STATE_BUS]    state;
+    reg  [`WORD_DATA_BUS]       RdBuf;
+    wire [`BUS_SLAVE_INDEX_BUS] sIndex;
 
     assign sIndex = Addr[`BUS_SLAVE_INDEX_LOC];
     assign SPMRW = RW;
@@ -44,7 +44,7 @@ module bus_if(
     always @(*)
     begin
         RdData = `WORD_DATA_W'h0;
-        SPMAS_ = `DISABLE_;
+        SPMAs_ = `DISABLE_;
         Busy = `DISABLE;
 
         case(state)
@@ -99,7 +99,7 @@ module bus_if(
 
     always @(posedge clk or `RESET_EDGE reset_)
     begin
-        if(reset == `RESET_ENABLE)
+        if(reset_ == `RESET_ENABLE)
         begin
             state       <= #1 `BUS_IF_STATE_IDLE;
             BusReq_     <= #1 `DISABLE_;
@@ -144,7 +144,7 @@ module bus_if(
                         begin
                             RdBuf <= BusRdData;
                         end
-                        if(stall == `ENABLE)
+                        if(Stall == `ENABLE)
                         begin
                             state <= `BUS_IF_STATE_STALL;
                         end
@@ -156,7 +156,7 @@ module bus_if(
                 end
                 `BUS_IF_STATE_STALL:
                 begin
-                    if(stall == `DISABLE)
+                    if(Stall == `DISABLE)
                     begin
                         state <= #1 `BUS_IF_STATE_IDLE;
                     end

@@ -1,10 +1,10 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/cpu.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "cpu.vh"
 
 module id_decoder(
-    input  reg                      IFPC,
-    input  reg                      IFInsn,
+    input  wire [`WORD_ADDR_BUS]    IFPC,
+    input  wire [`WORD_DATA_BUS]    IFInsn,
     input  wire                     IFEn,
 
     input  wire [`WORD_DATA_BUS]    GPRRdData0,
@@ -41,7 +41,7 @@ module id_decoder(
     output reg                      GPRWE_,
     output reg  [`ISA_EXP_BUS]      ExpCode,
     output reg                      LDHazard
-)
+);
 
     wire [`ISA_OP_BUS] Op = IFInsn[`ISA_OP_LOC];
     wire [`REG_ADDR_BUS] RaAddr = IFInsn[`ISA_RA_ADDR_LOC];
@@ -124,7 +124,7 @@ module id_decoder(
         GPRWE_ = `DISABLE_;
         ExpCode = `ISA_EXP_NO_EXP;
         case (Op)
-            `ISA_OP_AN:
+            `ISA_OP_ANDR:
             begin
                 ALUOp = `ALU_OP_AND;
                 DstAddr = RcAddr;
@@ -144,7 +144,7 @@ module id_decoder(
             end
             `ISA_OP_ORI   :
             begin
-                ALUOp = `ALU_OP_
+                ALUOp = `ALU_OP_OR;
                 ALUIn1 = ImmU;
                 GPRWE_ = `ENABLE_;
             end
@@ -174,13 +174,13 @@ module id_decoder(
             end
             `ISA_OP_ADDUR :
             begin
-                ALUOp = `ALU_OP_ADDU；
+                ALUOp = `ALU_OP_ADDU;
                 DstAddr = RcAddr;
                 GPRWE_ = `ENABLE_;
             end
             `ISA_OP_ADDUI :
             begin
-                ALUOp = `ALU_OP_ADDU
+                ALUOp = `ALU_OP_ADDU;
                 ALUIn1 = ImmS;              // Question: Why not ImmU
                 GPRWE_ = `ENABLE_;
             end
@@ -278,7 +278,7 @@ module id_decoder(
             end
             `ISA_OP_RDCR  :
             begin
-                if(ExeMode = `CPU_KERNEL_MODE)
+                if(ExeMode == `CPU_KERNEL_MODE)
                 begin
                     ALUIn0 = CRegRdData;
                     GPRWE_ = `ENABLE_;
@@ -312,7 +312,7 @@ module id_decoder(
             end
             default :
             begin
-                ExpCode = `ISP_EXP_UNDEF_INSN;
+                ExpCode = `ISA_EXP_UNDEF_INSN;
             end
 
         endcase

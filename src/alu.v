@@ -1,7 +1,8 @@
-`include "inc/nettype.vh"
-`include "inc/golbal_config.vh"
-`include "inc/isa.vh"
-`include "inc/cpu.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "stddef.vh"
+`include "isa.vh"
+`include "cpu.vh"
 
 module alu(
     input wire [`WORD_DATA_BUS] In0,
@@ -10,7 +11,7 @@ module alu(
 
     output reg [`WORD_DATA_BUS] Out,
     output reg                  OF
-)
+);
 
     wire signed [`WORD_DATA_BUS] SIn0 = $signed(In0);
     wire signed [`WORD_DATA_BUS] SIn1 = $signed(In1);

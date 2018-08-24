@@ -1,7 +1,7 @@
-`include "inc/nettype.vh"
-`include "inc/golbal_config.vh"
-`include "inc/isa.vh"
-`include "inc/cpu.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "isa.vh"
+`include "cpu.vh"
 
 module ex_stage(
     input  wire                     clk,
@@ -22,6 +22,7 @@ module ex_stage(
     output wire [`ISA_EXP_BUS]      EXExpCode,
     output wire [`WORD_DATA_BUS]    EXOut,
     output wire [`WORD_DATA_BUS]    EXFwdData,
+    output wire [`REG_ADDR_BUS]     EXDstAddr,
     input  wire [`WORD_ADDR_BUS]    IDPC,
     input  wire                     IDEn,
     input  wire [`ALU_OP_BUS]       IDALUOp,
@@ -33,51 +34,51 @@ module ex_stage(
     input  wire [`CTRL_OP_BUS]      IDCtrlOp,
     input  wire [`WORD_ADDR_BUS]    IDDstAddr,
     input  wire                     IDGPRWE_,
-    input  wire [`ISA_EXP_BUS]      IDExpCode,
-)
+    input  wire [`ISA_EXP_BUS]      IDExpCode
+);
 
     wire [`WORD_DATA_BUS] ALUOut;
     wire ALUOF;
     alu ALU(
-        .In0 = IDALUIn0,
-        .In1 = IDALUIn1,
-        .Op  = IDALUOp,
+        .In0 (IDALUIn0),
+        .In1 (IDALUIn1),
+        .Op  (IDALUOp),
 
-        .Out = ALUOut,
-        .OF  = ALUOF
+        .Out (ALUOut),
+        .OF  (ALUOF)
     );
 
     ex_reg EXReg(
-        .clk            = clk,
-        .reset_         = reset_,
+        .clk            (clk),
+        .reset_         (reset_),
     
-        .ALUOut         = ALUOut,
-        .ALUOF          = ALUOF,
+        .ALUOut         (ALUOut),
+        .ALUOF          (ALUOF),
     
-        .Stall          = Stall,
-        .Flush          = Flush,
-        .IntDetect      = IntDetect,
+        .Stall          (Stall),
+        .Flush          (Flush),
+        .IntDetect      (IntDetect),
     
-        .IDPC           = IDPC,
-        .IDEn           = IDEn,
-        .IDBrFlag       = IDBrFlag,
-        .IDMemOp        = IDMemOp,
-        .IDMemWrData    = IDMemWrData,
-        .IDCtrlOp       = IDCtrlOp,
-        .IDDstAddr      = IDDstAddr,
-        .IDGPRWE_       = IDGPRWE_,
-        .IDExpCode      = IDExpCode,
+        .IDPC           (IDPC),
+        .IDEn           (IDEn),
+        .IDBrFlag       (IDBrFlag),
+        .IDMemOp        (IDMemOp),
+        .IDMemWrData    (IDMemWrData),
+        .IDCtrlOp       (IDCtrlOp),
+        .IDDstAddr      (IDDstAddr),
+        .IDGPRWE_       (IDGPRWE_),
+        .IDExpCode      (IDExpCode),
     
-        .EXPC           = EXPC,
-        .EXEn           = EXEn,
-        .EXBrFlag       = EXBrFlag,
-        .EXMemOp        = EXMemOp,
-        .EXMemWrData    = EXMemWrData,
-        .EXCtrlOp       = EXCtrlOp,
-        .EXDstAddr      = EXDstAddr,
-        .EXGPRWE_       = EXGPRWE_,
-        .EXExpCode      = EXExpCode,
-        .EXOut          = EXOut
+        .EXPC           (EXPC),
+        .EXEn           (EXEn),
+        .EXBrFlag       (EXBrFlag),
+        .EXMemOp        (EXMemOp),
+        .EXMemWrData    (EXMemWrData),
+        .EXCtrlOp       (EXCtrlOp),
+        .EXDstAddr      (EXDstAddr),
+        .EXGPRWE_       (EXGPRWE_),
+        .EXExpCode      (EXExpCode),
+        .EXOut          (EXOut)
     );
 
 endmodule

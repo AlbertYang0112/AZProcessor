@@ -1,6 +1,6 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "stddef.vh"
 `include "cpu.vh"
 
 module if_stage(
@@ -33,55 +33,55 @@ module if_stage(
     output wire                     BusAs_,
     output wire                     BusRW,
     output wire [`WORD_DATA_BUS]    BusWrData
-)
+);
 
     wire [`WORD_DATA_BUS] Insn;
 
     bus_if BusIF(
-        .clk = clk,
-        .reset_ = reset_,
+        .clk(clk),
+        .reset_(reset_),
 
-        .Stall = Stall,
-        .Flush = Flush,
-        .Busy = Busy
+        .Stall(Stall),
+        .Flush(Flush),
+        .Busy(Busy),
 
-        .Addr = IFPC,
-        .As_ = `ENABLE_,
-        .RW = `READ,
-        .WrData = `WORD_DATA_W'h0;
-        .RdData = Insn,
+        .Addr(IFPC),
+        .As_(`ENABLE_),
+        .RW(`READ),
+        .WrData(`WORD_DATA_W'h0),
+        .RdData(Insn),
 
-        .SPMRdData = SPMPdData,
-        .SPMAddr = SPMAddr,
-        .SPMAs_ = SPMAs_,
-        .SPMRW = SPMRW,
-        .SPMWrData = SPMWrData,
+        .SPMRdData(SPMRdData),
+        .SPMAddr(SPMAddr),
+        .SPMAs_(SPMAs_),
+        .SPMRW(SPMRW),
+        .SPMWrData(SPMWrData),
         
-        .BusRdData = BusRdData,
-        .BusRdy_ = BusRdy_,
-        .BusGrnt_ = BusGrnt_,
-        .BusReq_ = BusReq_,
-        .BusAddr = BusAddr,
-        .BusAs_ = BusAs_,
-        .BusRW = BusRW,
-        .BusWrData = BusWrData
+        .BusRdData(BusRdData),
+        .BusRdy_(BusRdy_),
+        .BusGrnt_(BusGrnt_),
+        .BusReq_(BusReq_),
+        .BusAddr(BusAddr),
+        .BusAs_(BusAs_),
+        .BusRW(BusRW),
+        .BusWrData(BusWrData)
     );
 
     if_reg IFReg(
-        .clk = clk,
-        .reset = reset_,
+        .clk(clk),
+        .reset(reset_),
 
-        .Insn = Insn,
+        .Insn(Insn),
 
-        .Stall = Stall,
-        .Flush = Flush,
-        .NewPC = NewPC,
-        .BrTaken = BrTaken,
-        .BrAddr = BrAddr,
+        .Stall(Stall),
+        .Flush(Flush),
+        .NewPC(NewPC),
+        .BrTaken(BrTaken),
+        .BrAddr(BrAddr),
 
-        .IFPC = IFPC,
-        .IFInsn = IFInsn,
-        .IFEn = IFEn
+        .IFPC(IFPC),
+        .IFInsn(IFInsn),
+        .IFEn(IFEn)
     );
 
 endmodule

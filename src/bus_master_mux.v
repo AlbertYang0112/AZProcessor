@@ -1,6 +1,6 @@
-`include "inc/nettype.vh"
-`include "inc/bus.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "bus.vh"
+`include "stddef.vh"
 
 module bus_master_mux(
     input wire [`WORD_ADDR_BUS] m0Addr,
@@ -16,7 +16,7 @@ module bus_master_mux(
     input wire [`WORD_ADDR_BUS] m2Addr,
     input wire                  m2As_,
     input wire                  m2RW,
-    input wire [`WORD_DATA_BUS] m1Data,
+    input wire [`WORD_DATA_BUS] m2Data,
     input wire                  m2Grnt_,
     input wire [`WORD_ADDR_BUS] m3Addr,
     input wire                  m3As_,
@@ -27,7 +27,7 @@ module bus_master_mux(
     output reg                  sAs_,
     output reg                  sRW,
     output reg [`WORD_DATA_BUS] sData
-)
+);
     always @(*)
     begin
         if(m0Grnt_ == `ENABLE_)

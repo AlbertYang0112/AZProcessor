@@ -1,4 +1,4 @@
-`ifnedf __BUS_VH
+`ifndef __BUS_VH
 `define __BUS_VH
 
 `define BUS_MASTER_CH       4         // The number of master's channels

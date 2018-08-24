@@ -1,8 +1,10 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/isa.vh"
-`include "inc/cpu.vh"
-`include "inc/stddef.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "isa.vh"
+`include "cpu.vh"
+`include "stddef.vh"
+`include "spm.vh"
+`include "rom.vh"
 
 module ctrl(
     input  wire clk,
@@ -39,11 +41,11 @@ module ctrl(
     output wire                     IDFlush,
     output wire                     EXFlush,
     output wire                     MemFlush,
-    output reg  [`WORD_ADDR_BUS]    NewPC,
-)
+    output reg  [`WORD_ADDR_BUS]    NewPC
+);
     reg                     IntEn;
     reg                     PreExeMode;
-    reg                     PreIntEn,
+    reg                     PreIntEn;
     reg [`WORD_ADDR_BUS]    EPC;
     reg [`WORD_ADDR_BUS]    ExpVector;
     reg [`ISA_EXP_BUS]      ExpCode;
@@ -90,7 +92,7 @@ module ctrl(
 
     always @(*)
     begin
-        if((IntEn == `ENABLE) && (|((~mask) & IRQ) == `ENABLE))
+        if((IntEn == `ENABLE) && (|((~Mask) & IRQ) == `ENABLE))
         begin
             IntDetect = `ENABLE;
         end
@@ -145,7 +147,7 @@ module ctrl(
             end
             `CREG_ADR_CPU_INFO    :
             begin
-                CRegRdData = {`RELEASE_YEAR, `RELEASE_MONTH, `RELEASE_VERSION, `RELEASE_REVERSION};
+                CRegRdData = {`RELEASE_YEAR, `RELEASE_MONTH, `RELEASE_VERSION, `RELEASE_REVISION};
             end
             default:
             begin

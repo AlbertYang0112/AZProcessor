@@ -1,7 +1,7 @@
-`include "inc/nettype.vh"
-`include "inc/global_config.vh"
-`include "inc/cpu.vh"
-`include "inc/spm.vh"
+`include "nettype.vh"
+`include "global_config.vh"
+`include "cpu.vh"
+`include "spm.vh"
 
 module spm(
     input wire                      clk,
@@ -14,15 +14,15 @@ module spm(
     input wire                      MemSPMAs_,
     input wire                      MemSPMRW,
     input wire [`WORD_DATA_BUS]     MemSPMWrData,
-    output wire [`WORD_DATA_BUS]    MemSPMRdData,
-)
+    output wire [`WORD_DATA_BUS]    MemSPMRdData
+);
 
     reg wea;
     reg web;
 
     always @(*)
     begin
-        if((IFSPMAS_ == `ENABLE) && (IFSPMRW == `WRITE))
+        if((IFSPMAs_ == `ENABLE) && (IFSPMRW == `WRITE))
         begin
             wea = `MEM_ENABLE;
         end
@@ -30,7 +30,7 @@ module spm(
         begin
             wea = `MEM_DISABLE;
         end
-        if((MemSPMAS_ == `ENABLE) && (MemSPMRW == `WRITE))
+        if((MemSPMAs_ == `ENABLE) && (MemSPMRW == `WRITE))
         begin
             web = `MEM_ENABLE;
         end

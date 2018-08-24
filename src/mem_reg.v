@@ -1,8 +1,8 @@
-`include "inc/nettype.vh"
-`include "inc/stddef.vh"
-`include "inc/global_config.vh"
-`include "inc/cpu.vh"
-`include "inc/isa.vh"
+`include "nettype.vh"
+`include "stddef.vh"
+`include "global_config.vh"
+`include "cpu.vh"
+`include "isa.vh"
 
 module mem_reg(
     input  wire                     clk,
@@ -30,11 +30,11 @@ module mem_reg(
     output reg                      MemGPRWE_,
     output reg  [`ISA_EXP_BUS]      MemExpCode,
     output reg  [`WORD_DATA_BUS]    MemOut
-)
+);
 
     always @(posedge clk or `RESET_EDGE reset_)
     begin
-        if(reset == `RESET_ENABLE)
+        if(reset_ == `RESET_ENABLE)
         begin
             MemPC       <= #1 `WORD_ADDR_W'h0;
             MemEn       <= #1 `DISABLE;
@@ -68,7 +68,7 @@ module mem_reg(
                     MemCtrlOp   <= #1 `CTRL_OP_NOP;
                     MemDstAddr  <= #1 `REG_ADDR_W'h0;
                     MemGPRWE_   <= #1 `DISABLE_;
-                    MemExpCode  <= #1 `IEA_EXP_MISS_ALIGN;
+                    MemExpCode  <= #1 `ISA_EXP_MISS_ALIGN;
                     MemOut      <= #1 `WORD_DATA_W'h0;
                 end
                 else
