@@ -4,32 +4,19 @@
 `include "clock.vh"
 
 module system_clock(
-    input wire osc,
+    input wire oscp,
+    input wire oscn,
     input wire reset_,
-    output reg clk,
-    output wire clk_
+    output wire clk
 );
 
-    integer clkDiv;
-    assign clk_ = ~clk;
-    always @(posedge osc or `RESET_EDGE reset_)
-    begin
-        if(reset_ == `RESET_ENABLE)
-        begin
-            clk = #1 `LOW;
-        end
-        else
-        begin
-            if(clkDiv >= `CLOCK_DIV)
-            begin
-                clk = #1 ~clk;
-                clkDiv = #1 0;
-            end
-            else
-            begin
-                clkDiv = #1 clkDiv + 1;
-            end
-        end
-    end
+    clk_manager ClkManager(
+        .clk_out1(clk),     // output clk_out1
+        // Status and control signals
+        .resetn(reset_), // input resetn
+       // Clock in ports
+        .clk_in1_p(oscp),    // input clk_in1_p
+        .clk_in1_n(oscn)    // input clk_in1_n
+    );
 
 endmodule

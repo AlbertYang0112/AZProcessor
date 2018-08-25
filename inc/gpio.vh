@@ -5,8 +5,8 @@
 `define GPIO_IN_BUS         2:0
 `define GPIO_OUT_CH         4
 `define GPIO_OUT_BUS        3:0
-`define GPIO_IO_CH          2
-`define GPIO_IO_BUS         1:0
+`define GPIO_IO_CH          4
+`define GPIO_IO_BUS         3:0
 `define GPIO_ADDR_BUS       1:0
 `define GPIO_ADDR_W         2
 `define GPIO_ADDR_LOC       1:0

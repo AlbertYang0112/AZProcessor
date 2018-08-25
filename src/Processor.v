@@ -26,29 +26,32 @@
 
 
 module Processor(
-    input wire osc,
-    input wire reset_,
-    output reg UartTX,
-    input wire UartRX,
-    output wire LED0,
-    output wire LED1,
-    output wire LED2,
-    output wire LED3,
-    input wire Button0,
-    input wire Button1,
-    input wire Button2
+    (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscp,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscn,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire reset_,
+    /*(* KEEP = "{TRUE|FALSE |SOFT}" *)output reg UartTX,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire UartRX,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED0,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED1,
+   (* KEEP = "{TRUE|FALSE |SOFT}" *) output wire LED2,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED3,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire Button0,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire Button1,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire Button2
+    */
+    input wire [`GPIO_IN_BUS] GPIOIn,
+    output wire [`GPIO_OUT_BUS] GPIOOut
     );
 
-    wire clk;
-    wire clk_;    
+    wire clk; 
 
     system_clock SystemClock(
-        .osc(osc),
+        .oscp(oscp),
+        .oscn(oscn),
         .reset_(reset_),
-        .clk(clk),
-        .clk_(clk_)
+        .clk(clk)
     );
-    
+    /*
     always @(posedge clk or `RESET_EDGE reset_)
     begin
         if(reset_ == `RESET_ENABLE)
@@ -57,7 +60,7 @@ module Processor(
 
         end
     end
-
+*/
     wire [`WORD_DATA_BUS]    MasterSharedBusRdData;
     wire                     MasterSharedBusRdy_;
     wire [`WORD_ADDR_BUS]    SlaveSharedBusAddr;
@@ -197,15 +200,18 @@ module Processor(
     assign S7BusWrData = SlaveSharedBusWrData;
 
     wire [`CPU_IRQ_BUS] IRQ;
+/*
+    wire [`GPIO_IN_BUS] GPIOIn;
+    wire [`GPIO_OUT_BUS]  GPIOOut;
 
-    wire [`GPIO_OUT_BUS] GPIOIn;
-    wire [`GPIO_IN_BUS]  GPIOOut;
-
-    assign GPIOIn = {Button0, Button1, Button2};
+    assign GPIOIn[0] = Button0;
+    assign GPIOIn[1] = Button1;
+    assign GPIOIn[2] = Button2;
     assign LED0 = GPIOOut[0];
     assign LED1 = GPIOOut[1];
     assign LED2 = GPIOOut[2];
     assign LED3 = GPIOOut[3];
+    */
 
     
     cpu CPU(
@@ -228,6 +234,17 @@ module Processor(
         .M1BusRW(M1BusRW),
         .M1BusWrData(M1BusWrData),
         .IRQ(IRQ)
+    );
+
+    rom ROMModule(
+        .clk(clk),
+        .reset_(reset_),
+
+        .CS_(S0BusCS_),
+        .As_(S0BusAs_),
+        .Addr(S0BusAddr),
+        .RdData(S0BusRdData),
+        .Rdy_(S0BusRdy_)
     );
 
     gpio GPIOModule(
