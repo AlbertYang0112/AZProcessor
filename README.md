@@ -1,8 +1,11 @@
 # AZ Processor
 
-This is an implementation of the AZ processor in book *CPU自制入门*
+This is an implementation of the AZ processor in book *CPU自制入门*.
+
+Please refer to the book for the futher details.
 
 Environment:
 
-- FPGA Spartan 6 XC6SLX9
-- ISE 14.7
+- EVB: ZC702 Evaluation Board
+- FPGA Zynq-7 XC7Z020CLG484-l
+- Vivado 2018.x
