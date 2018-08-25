@@ -26,7 +26,7 @@ module if_stage(
     output wire                     SPMRW,
     output wire [`WORD_DATA_BUS]    SPMWrData,
 
-    input wire [`WORD_ADDR_BUS]     BusRdData,
+    input wire [`WORD_DATA_BUS]     BusRdData,
     input wire                      BusRdy_,
     input wire                      BusGrnt_,
     output wire                     BusReq_,

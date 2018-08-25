@@ -24,7 +24,7 @@ module ctrl(
     input  wire                     MemBrFlag,
     input  wire [`CTRL_OP_BUS]      MemCtrlOp,
     input  wire [`REG_ADDR_BUS]     MemDstAddr,
-    input  wire                     MemGPRWE_,
+    //input  wire                     MemGPRWE_,
     input  wire [`ISA_EXP_BUS]      MemExpCode,
     input  wire [`WORD_DATA_BUS]    MemOut,
 

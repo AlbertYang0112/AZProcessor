@@ -40,7 +40,7 @@ module cpu(
     wire                    IFBusy;
 
     wire [`WORD_DATA_BUS]   IFSPMRdData;
-    wire [`SPM_ADDR_BUS]   IFSPMAddr;
+    wire [`SPM_ADDR_BUS]    IFSPMAddr;
     wire                    IFSPMAs_;
     wire                    IFSPMRW;
     wire [`WORD_DATA_BUS]   IFSPMWrData;
@@ -67,7 +67,7 @@ module cpu(
         .SPMRW(IFSPMRW),
         .SPMWrData(IFSPMWrData),
 
-        .BusRdData(M0BusAddr),
+        .BusRdData(M0BusRdData),
         .BusRdy_(M0BusRdy_),
         .BusGrnt_(M0BusGrnt_),
         .BusReq_(M0BusReq_),
@@ -276,7 +276,7 @@ module cpu(
         .MemBrFlag(MemBrFlag),
         .MemCtrlOp(MemCtrlOp),
         .MemDstAddr(MemDstAddr),
-        .MemGPRWE_(MemGPRWE_),
+        //.MemGPRWE_(MemGPRWE_),
         .MemExpCode(MemExpCode),
         .MemOut(MemOut),
 
@@ -298,6 +298,7 @@ module cpu(
 
     spm SPM(
         .clk(clk),
+        .reset_(reset_),
         .IFSPMAddr(IFSPMAddr),
         .IFSPMAs_(IFSPMAs_),
         .IFSPMRW(IFSPMRW),

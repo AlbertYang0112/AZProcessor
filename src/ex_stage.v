@@ -38,6 +38,7 @@ module ex_stage(
 );
 
     wire [`WORD_DATA_BUS] ALUOut;
+    assign EXFwdData = ALUOut;
     wire ALUOF;
     alu ALU(
         .In0 (IDALUIn0),

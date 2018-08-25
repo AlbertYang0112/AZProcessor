@@ -5,6 +5,7 @@
 
 module spm(
     input wire                      clk,
+    input wire                      reset_,
     input wire [`SPM_ADDR_BUS]      IFSPMAddr,
     input wire                      IFSPMAs_,
     input wire                      IFSPMRW,
@@ -40,6 +41,19 @@ module spm(
         end
     end
 
-    // Todo: Implement the dual port ram.
+    blk_mem_spm BlkMemSPM(
+        .clka(clk),
+        .rsta(reset_),
+        .wea(wea),
+        .addra(IFSPMAddr),
+        .dina(IFSPMWrData),
+        .douta(IFSPMRdData),
+        .clkb(clk),
+        .rstb(reset_),
+        .web(web),
+        .addrb(MemSPMAddr),
+        .dinb(MemSPMWrData),
+        .doutb(MemSPMRdData)
+    );
 
 endmodule
