@@ -30,35 +30,35 @@ module bus_addr_dec(
         case (s_index)
             `BUS_SLAVE_0 :
             begin
-                s0CS_ = `ENABLE;
+                s0CS_ = `ENABLE_;
             end
             `BUS_SLAVE_1 :
             begin
-                s1CS_ = `ENABLE;
+                s1CS_ = `ENABLE_;
             end
             `BUS_SLAVE_2 :
             begin
-                s2CS_ = `ENABLE;
+                s2CS_ = `ENABLE_;
             end
             `BUS_SLAVE_3 :
             begin
-                s3CS_ = `ENABLE;
+                s3CS_ = `ENABLE_;
             end
             `BUS_SLAVE_4 :
             begin
-                s4CS_ = `ENABLE;
+                s4CS_ = `ENABLE_;
             end
             `BUS_SLAVE_5 :
             begin
-                s5CS_ = `ENABLE;
+                s5CS_ = `ENABLE_;
             end
             `BUS_SLAVE_6 :
             begin
-                s6CS_ = `ENABLE;
+                s6CS_ = `ENABLE_;
             end
             `BUS_SLAVE_7 :
             begin
-                s7CS_ = `ENABLE;
+                s7CS_ = `ENABLE_;
             end
         endcase
     end

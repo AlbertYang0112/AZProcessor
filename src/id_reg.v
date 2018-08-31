@@ -51,7 +51,7 @@ module id_reg(
             IDMemWrData <= #1 `WORD_DATA_W'h0;
             IDCtrlOp    <= #1 `CTRL_OP_NOP;
             IDDstAddr   <= #1 `REG_ADDR_W'h0;
-            IDGPRWE_    <= #1 `DISABLE;
+            IDGPRWE_    <= #1 `DISABLE_;
             IDExpCode   <= #1 `ISA_EXP_NO_EXP;
         end
         else
@@ -70,7 +70,7 @@ module id_reg(
                     IDMemWrData <= #1 `WORD_DATA_W'h0;
                     IDCtrlOp    <= #1 `CTRL_OP_NOP;
                     IDDstAddr   <= #1 `REG_ADDR_W'h0;
-                    IDGPRWE_    <= #1 `DISABLE;
+                    IDGPRWE_    <= #1 `DISABLE_;
                     IDExpCode   <= #1 `ISA_EXP_NO_EXP;
                 end
                 else

@@ -53,13 +53,13 @@ module bus_if(
         case(state)
             `BUS_IF_STATE_IDLE:
             begin 
-                if((Flush == `DISABLE) && (As_ == `ENABLE))
+                if((Flush == `DISABLE) && (As_ == `ENABLE_))
                 begin
                     if(sIndex == `BUS_SLAVE_1)
                     begin
                         if(Stall == `DISABLE)
                         begin
-                            SPMAs_ = `ENABLE;
+                            SPMAs_ = `ENABLE_;
                             if(RW == `READ)
                             begin
                                 RdData = SPMRdData;

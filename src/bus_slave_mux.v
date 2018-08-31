@@ -33,42 +33,42 @@ module bus_slave_mux(
 
     always @(*)
     begin
-        if(s0CS_ == `ENABLE)
+        if(s0CS_ == `ENABLE_)
         begin
             mRdData = s0RdData;
             mRdy_ = s0Rdy_;
         end
-        else if(s1CS_ == `ENABLE)
+        else if(s1CS_ == `ENABLE_)
         begin
             mRdData = s1RdData;
             mRdy_ = s1Rdy_;
         end
-        else if(s2CS_ == `ENABLE)
+        else if(s2CS_ == `ENABLE_)
         begin
             mRdData = s2RdData;
             mRdy_ = s2Rdy_;
         end
-        else if(s3CS_ == `ENABLE)
+        else if(s3CS_ == `ENABLE_)
         begin
             mRdData = s3RdData;
             mRdy_ = s3Rdy_;
         end
-        else if(s4CS_ == `ENABLE)
+        else if(s4CS_ == `ENABLE_)
         begin
             mRdData = s4RdData;
             mRdy_ = s4Rdy_;
         end
-        else if(s5CS_ == `ENABLE)
+        else if(s5CS_ == `ENABLE_)
         begin
             mRdData = s5RdData;
             mRdy_ = s5Rdy_;
         end
-        else if(s6CS_ == `ENABLE)
+        else if(s6CS_ == `ENABLE_)
         begin
             mRdData = s6RdData;
             mRdy_ = s6Rdy_;
         end
-        else if(s7CS_ == `ENABLE)
+        else if(s7CS_ == `ENABLE_)
         begin
             mRdData = s7RdData;
             mRdy_ = s7Rdy_;
@@ -76,7 +76,7 @@ module bus_slave_mux(
         else
         begin
             mRdData = `WORD_DATA_W'h0;
-            mRdy_ = `DISABLE;
+            mRdy_ = `DISABLE_;
         end
     
     end

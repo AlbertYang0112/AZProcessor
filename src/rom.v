@@ -28,7 +28,7 @@ module rom(
         end
         else
         begin
-            if((CS_ == `ENABLE) && (As_ == `ENABLE_))
+            if((CS_ == `ENABLE_) && (As_ == `ENABLE_))
             begin
                 Rdy_ <= #1 `ENABLE_;
             end
