@@ -1,10 +1,10 @@
 `ifndef __GPIO_VH
 `define __GPIO_VH
 
-`define GPIO_IN_CH          3
-`define GPIO_IN_BUS         2:0
-`define GPIO_OUT_CH         4
-`define GPIO_OUT_BUS        3:0
+`define GPIO_IN_CH          2
+`define GPIO_IN_BUS         1:0
+`define GPIO_OUT_CH         8
+`define GPIO_OUT_BUS        7:0
 `define GPIO_IO_CH          4
 `define GPIO_IO_BUS         3:0
 `define GPIO_ADDR_BUS       1:0
