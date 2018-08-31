@@ -3,4 +3,5 @@
 !*.vh
 !*.md
 !*.txt
+!*.s
 !.gitignore
