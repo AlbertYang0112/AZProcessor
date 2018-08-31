@@ -9,8 +9,8 @@ module alu(
     input wire [`WORD_DATA_BUS] In1,
     input wire [`ALU_OP_BUS]    Op,
 
-    output reg [`WORD_DATA_BUS] Out,
-    output reg                  OF
+    output reg [`WORD_DATA_BUS] Out = `WORD_DATA_W'h0,
+    output reg                  OF = `DISABLE
 );
 
     wire signed [`WORD_DATA_BUS] SIn0 = $signed(In0);
