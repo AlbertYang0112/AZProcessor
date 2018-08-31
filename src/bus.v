@@ -45,7 +45,7 @@ module bus(
     input wire [`WORD_DATA_BUS]     s1RdData,
     input wire [`WORD_DATA_BUS]     s2RdData,
     input wire [`WORD_DATA_BUS]     s3RdData,
-    input wire [`WORD_DATA_BUS]     s4RdData,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire [`WORD_DATA_BUS]     s4RdData,
     input wire [`WORD_DATA_BUS]     s5RdData,
     input wire [`WORD_DATA_BUS]     s6RdData,
     input wire [`WORD_DATA_BUS]     s7RdData,
