@@ -46,7 +46,7 @@ module if_reg(
                 end
                 else
                 begin
-                    IFPC    <=  IFPC + 1'd1;
+                    IFPC    <= #1 IFPC + 1'd1;
                     IFInsn  <= #1 Insn;
                     IFEn    <= #1 `ENABLE;
                 end

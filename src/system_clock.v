@@ -7,9 +7,11 @@ module system_clock(
     input wire oscp,
     input wire oscn,
     input wire reset_,
-    output wire clk
+    output wire clk,
+    output wire clk_
 );
 
+    assign clk_ = ~clk;
     clk_manager ClkManager(
         .clk_out1(clk),     // output clk_out1
         // Status and control signals

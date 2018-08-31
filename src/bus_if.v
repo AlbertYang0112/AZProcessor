@@ -65,10 +65,6 @@ module bus_if(
                                 RdData = SPMRdData;
                             end
                         end
-                        else
-                        begin
-                            Busy = `ENABLE;
-                        end
                     end
                 end
             end
@@ -139,21 +135,22 @@ module bus_if(
                     BusAs_ <= #1 `DISABLE_;
                     if(BusRdy_ == `ENABLE_)
                     begin
-                        BusReq_ <= `DISABLE_;
-                        BusAddr <= `WORD_ADDR_W'h0;
-                        BusRW <= `READ;
-                        BusWrData <= `WORD_DATA_W'h0;
+                        BusReq_ <= #1 `DISABLE_;
+                        BusAddr <= #1 `WORD_ADDR_W'h0;
+                        BusRW <= #1 `READ;
+                        BusWrData <= #1 `WORD_DATA_W'h0;
                         if(BusRW == `READ)
                         begin
-                            RdBuf <= BusRdData;
+                            RdBuf <= #1 BusRdData;
                         end
                         if(Stall == `ENABLE)
                         begin
-                            state <= `BUS_IF_STATE_STALL;
+                            state <= #1 `BUS_IF_STATE_STALL;
                         end
                         else
                         begin
-                            state <= `BUS_IF_STATE_IDLE;
+                            state <= #1 `BUS_IF_STATE_IDLE;
+                            
                         end
                     end
                 end

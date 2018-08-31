@@ -27,9 +27,9 @@
 
 
 module Processor(
-    (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscp,
-     input wire oscn,
-    input wire reset_,
+    input wire oscp,
+    input wire oscn,
+    input wire resetIn_,
     /*(* KEEP = "{TRUE|FALSE |SOFT}" *)output reg UartTX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire UartRX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED0,
@@ -41,15 +41,55 @@ module Processor(
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire Button2
     */
     input wire [`GPIO_IN_BUS] GPIOIn,
-    output wire [`GPIO_OUT_BUS] GPIOOut
+    output wire [`GPIO_OUT_BUS] GPIOOut,
+    // For debug
+    output wire clk,
+    output wire clk_,
+    output wire [`WORD_DATA_BUS] M0BusRdData,
+    output wire M0BusRdy_,
+    output wire M0BusGrnt_,
+    output wire M0BusReq_,
+    output wire [`WORD_ADDR_BUS] M0BusAddr,
+    output wire M0BusAs_,
+    output wire M0BusRW,
+    output wire [`WORD_DATA_BUS] M0BusWrData,
+    output wire [`WORD_ADDR_BUS] IFPC
+
     );
 
-    wire clk; 
+    wire clk;
+    wire clk_;
+    wire reset_;
+    reg [1:0] resetCnt;
+    assign reset_ = (resetCnt == 2'd3 ? `RESET_DISABLE : `RESET_ENABLE);
+    
+    always @(posedge clk or `RESET_EDGE resetIn_)
+    begin
+        if(resetIn_ == `RESET_ENABLE)
+        begin
+            resetCnt <= #1 2'd0;
+        end
+        else
+        begin
+            if(resetCnt == 2'd3)
+            begin
+            end
+            else if(resetIn_ == `RESET_DISABLE)
+            begin
+                resetCnt <= #1 resetCnt + 1;
+            end
+            else
+            begin
+                resetCnt <= #1 2'd0;
+            end
+        end
+    end
+    
 
     system_clock SystemClock(
         .oscp(oscp),
         .oscn(oscn),
-        .reset_(reset_),
+        .reset_(resetIn_),
         .clk(clk)
     );
     /*
@@ -217,6 +257,7 @@ module Processor(
     
     cpu CPU(
         .clk(clk),
+        .clk_(clk_),
         .reset_(reset_),
         .M0BusRdData(M0BusRdData),
         .M0BusRdy_(M0BusRdy_),
@@ -234,7 +275,8 @@ module Processor(
         .M1BusAs_(M1BusAs_),
         .M1BusRW(M1BusRW),
         .M1BusWrData(M1BusWrData),
-        .IRQ(IRQ)
+        .IRQ(IRQ),
+        .IFPC(IFPC)
     );
     
     wire [`ROM_ADDR_BUS] ROMBusAddr = S0BusAddr[`ROM_ADDR_LOC];
