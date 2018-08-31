@@ -3,7 +3,7 @@
 `include "stddef.vh"
 
 module bus_addr_dec(
-    input  wire [`WORD_ADDR_BUS]    sAddr,
+    (* KEEP = "{TRUE|FALSE |SOFT}" *)input  wire [`WORD_ADDR_BUS]    sAddr,
     output reg                      s0CS_,
     output reg                      s1CS_,
     output reg                      s2CS_,

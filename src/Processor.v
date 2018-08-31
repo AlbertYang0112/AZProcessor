@@ -27,8 +27,7 @@
 
 module Processor(
     (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscp,
-    (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscn,
-    (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire reset_,
+     input wire oscn,
     /*(* KEEP = "{TRUE|FALSE |SOFT}" *)output reg UartTX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire UartRX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED0,
