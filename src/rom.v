@@ -9,16 +9,14 @@ module rom(
 
     input wire CS_,
     input wire As_,
-    input wire [`WORD_ADDR_BUS] Addr,
+    input wire [`ROM_ADDR_LOC] Addr,
     output wire [`WORD_DATA_BUS] RdData,
     output reg Rdy_
 );
 
-    wire [`ROM_ADDR_BUS] RomAddr = Addr[`ROM_ADDR_LOC];
-
     blk_mem_rom BlkMemROM(
         .clka(clk),
-        .addra(RomAddr),
+        .addra(Addr),
         .douta(RdData)
     );
 

@@ -4,6 +4,7 @@
 `include "stddef.vh"
 `include "cpu.vh"
 `include "gpio.vh"
+`include "rom.vh"
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -235,13 +236,15 @@ module Processor(
         .IRQ(IRQ)
     );
 
+    wire [`ROM_ADDR_BUS] ROMBusAddr = S0BusAddr[`ROM_ADDR_LOC];
+
     rom ROMModule(
         .clk(clk),
         .reset_(reset_),
 
         .CS_(S0BusCS_),
         .As_(S0BusAs_),
-        .Addr(S0BusAddr),
+        .Addr(ROMBusAddr),
         .RdData(S0BusRdData),
         .Rdy_(S0BusRdy_)
     );
