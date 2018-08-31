@@ -20,6 +20,7 @@ module gpio(
     // inout wire [`GPIO_IO_BUS] GPIOIO
 );
 
+    wire [`GPIO_ADDR_BUS] GPIORegAddr = Addr[`GPIO_ADDR_LOC];
     always @(posedge clk or `RESET_EDGE reset_)
     begin
         if(reset_ == `RESET_ENABLE)
@@ -43,7 +44,7 @@ module gpio(
 
             if((CS_ == `ENABLE_) && (As_ == `ENABLE_) && (RW == `READ))
             begin
-                case(Addr[`GPIO_ADDR_LOC])
+                case(GPIORegAddr)
 //`ifdef GPIO_IN_CH
                     `GPIO_ADDR_IN_DATA:
                     begin
@@ -65,7 +66,7 @@ module gpio(
 
             if((CS_ == `ENABLE_) && (As_ == `ENABLE_) && (RW == `WRITE))
             begin
-                case(Addr)
+                case(GPIORegAddr)
 //`ifdef GPIO_OUT_CH
                     `GPIO_ADDR_OUT_DATA:
                     begin
