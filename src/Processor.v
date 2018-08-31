@@ -29,6 +29,7 @@
 module Processor(
     (* KEEP = "{TRUE|FALSE |SOFT}" *) input wire oscp,
      input wire oscn,
+    input wire reset_,
     /*(* KEEP = "{TRUE|FALSE |SOFT}" *)output reg UartTX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire UartRX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED0,
@@ -235,7 +236,7 @@ module Processor(
         .M1BusWrData(M1BusWrData),
         .IRQ(IRQ)
     );
-
+    
     wire [`ROM_ADDR_BUS] ROMBusAddr = S0BusAddr[`ROM_ADDR_LOC];
 
     rom ROMModule(
