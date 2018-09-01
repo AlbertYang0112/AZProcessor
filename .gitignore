@@ -4,4 +4,6 @@
 !*.md
 !*.txt
 !*.s
+!*.coe
+!*.bin
 !.gitignore
