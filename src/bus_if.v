@@ -66,6 +66,10 @@ module bus_if(
                             end
                         end
                     end
+                    else
+                    begin
+                        Busy = `ENABLE;
+                    end
                 end
             end
             `BUS_IF_STATE_REQ:
@@ -74,6 +78,7 @@ module bus_if(
             end
             `BUS_IF_STATE_ACCESS:
             begin 
+                //Busy = `ENABLE;
                 if(BusRdy_ == `ENABLE_)
                 begin
                     if(RW == `READ)
@@ -143,6 +148,7 @@ module bus_if(
                         begin
                             RdBuf <= #1 BusRdData;
                         end
+                        //state <= #1 `BUS_IF_STATE_IDLE;
                         if(Stall == `ENABLE)
                         begin
                             state <= #1 `BUS_IF_STATE_STALL;

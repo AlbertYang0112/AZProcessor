@@ -20,7 +20,7 @@ module rom(
         .douta(RdData)
     );
 
-    always @(negedge clk or `RESET_EDGE reset_)
+    always @(posedge clk or `RESET_EDGE reset_)
     begin
         if(reset_ == `RESET_ENABLE)
         begin
