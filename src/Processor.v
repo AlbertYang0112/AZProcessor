@@ -82,7 +82,7 @@ module Processor(
     system_clock SystemClock(
         .oscp(oscp),
         .oscn(oscn),
-        .reset(1'b0),
+        //.reset(1'b0),
         .clk(clk),
         .clk_(clk_),
         .dbgclk(dbgclk),
@@ -146,15 +146,15 @@ module Processor(
     wire                     S0BusRW;
     wire [`WORD_DATA_BUS]    S0BusWrData;
     wire                     S1BusCS_;
-    wire [`WORD_DATA_BUS]    S1BusRdData;
-    wire                     S1BusRdy_;
+    wire [`WORD_DATA_BUS]    S1BusRdData = `WORD_DATA_W'h0;
+    wire                     S1BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S1BusAddr;
     wire                     S1BusAs_;
     wire                     S1BusRW;
     wire [`WORD_DATA_BUS]    S1BusWrData;
     wire                     S2BusCS_;
     wire [`WORD_DATA_BUS]    S2BusRdData = `WORD_DATA_W'h0;
-    wire                     S2BusRdy_;
+    wire                     S2BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S2BusAddr;
     wire                     S2BusAs_;
     wire                     S2BusRW;
@@ -168,7 +168,7 @@ module Processor(
     wire [`WORD_DATA_BUS]    S3BusWrData;
     wire                     S4BusCS_;
     wire [`WORD_DATA_BUS]    S4BusRdData;
-    wire                     S4BusRdy_ = `DISABLE_;
+    wire                     S4BusRdy_;
     wire [`WORD_ADDR_BUS]    S4BusAddr;
     wire                     S4BusAs_;
     wire                     S4BusRW;
@@ -236,7 +236,7 @@ module Processor(
     assign S6BusWrData = SlaveSharedBusWrData;
     assign S7BusWrData = SlaveSharedBusWrData;
 
-    wire [`CPU_IRQ_BUS] IRQ = `CPU_IRQ_W'h0;
+    wire [`CPU_IRQ_BUS] IRQ = `CPU_IRQ_CH'h0;
 /*
     wire [`GPIO_IN_BUS] GPIOIn;
     wire [`GPIO_OUT_BUS]  GPIOOut;

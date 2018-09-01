@@ -6,7 +6,7 @@
 module system_clock(
     input wire oscp,
     input wire oscn,
-    input wire reset,
+    //input wire reset,
     output wire clk,
     output wire clk_,
     output wire dbgclk,
