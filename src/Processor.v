@@ -78,7 +78,7 @@ module Processor(
     end
     */
     wire dbgclk;
-    
+
     system_clock SystemClock(
         .oscp(oscp),
         .oscn(oscn),
@@ -124,19 +124,19 @@ module Processor(
     wire [`WORD_DATA_BUS]    M2BusRdData;
     wire                     M2BusRdy_;
     wire                     M2BusGrnt_;
-    wire                     M2BusReq_;
-    wire [`WORD_ADDR_BUS]    M2BusAddr;
-    wire                     M2BusAs_;
-    wire                     M2BusRW;
-    wire [`WORD_DATA_BUS]    M2BusWrData;
+    wire                     M2BusReq_ = `DISABLE_;
+    wire [`WORD_ADDR_BUS]    M2BusAddr = `WORD_ADDR_W'h0;
+    wire                     M2BusAs_ = `DISABLE_;
+    wire                     M2BusRW = `READ;
+    wire [`WORD_DATA_BUS]    M2BusWrData = `WORD_DATA_W'h0;
     wire [`WORD_DATA_BUS]    M3BusRdData;
     wire                     M3BusRdy_;
     wire                     M3BusGrnt_;
-    wire                     M3BusReq_;
-    wire [`WORD_ADDR_BUS]    M3BusAddr;
-    wire                     M3BusAs_;
-    wire                     M3BusRW;
-    wire [`WORD_DATA_BUS]    M3BusWrData;
+    wire                     M3BusReq_ = `DISABLE_;
+    wire [`WORD_ADDR_BUS]    M3BusAddr = `WORD_ADDR_W'h0;
+    wire                     M3BusAs_ = `DISABLE_;
+    wire                     M3BusRW = `READ;
+    wire [`WORD_DATA_BUS]    M3BusWrData = `WORD_DATA_W'h0;
 
     wire                     S0BusCS_;
     wire [`WORD_DATA_BUS]    S0BusRdData;
@@ -153,43 +153,43 @@ module Processor(
     wire                     S1BusRW;
     wire [`WORD_DATA_BUS]    S1BusWrData;
     wire                     S2BusCS_;
-    wire [`WORD_DATA_BUS]    S2BusRdData;
+    wire [`WORD_DATA_BUS]    S2BusRdData = `WORD_DATA_W'h0;
     wire                     S2BusRdy_;
     wire [`WORD_ADDR_BUS]    S2BusAddr;
     wire                     S2BusAs_;
     wire                     S2BusRW;
     wire [`WORD_DATA_BUS]    S2BusWrData;
     wire                     S3BusCS_;
-    wire [`WORD_DATA_BUS]    S3BusRdData;
-    wire                     S3BusRdy_;
+    wire [`WORD_DATA_BUS]    S3BusRdData = `WORD_DATA_W'h0;
+    wire                     S3BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S3BusAddr;
     wire                     S3BusAs_;
     wire                     S3BusRW;
     wire [`WORD_DATA_BUS]    S3BusWrData;
     wire                     S4BusCS_;
     wire [`WORD_DATA_BUS]    S4BusRdData;
-    wire                     S4BusRdy_;
+    wire                     S4BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S4BusAddr;
     wire                     S4BusAs_;
     wire                     S4BusRW;
     wire [`WORD_DATA_BUS]    S4BusWrData;
     wire                     S5BusCS_;
-    wire [`WORD_DATA_BUS]    S5BusRdData;
-    wire                     S5BusRdy_;
+    wire [`WORD_DATA_BUS]    S5BusRdData = `WORD_DATA_W'h0;
+    wire                     S5BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S5BusAddr;
     wire                     S5BusAs_;
     wire                     S5BusRW;
     wire [`WORD_DATA_BUS]    S5BusWrData;
     wire                     S6BusCS_;
-    wire [`WORD_DATA_BUS]    S6BusRdData;
-    wire                     S6BusRdy_;
+    wire [`WORD_DATA_BUS]    S6BusRdData = `WORD_DATA_W'h0;
+    wire                     S6BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S6BusAddr;
     wire                     S6BusAs_;
     wire                     S6BusRW;
     wire [`WORD_DATA_BUS]    S6BusWrData;
     wire                     S7BusCS_;
-    wire [`WORD_DATA_BUS]    S7BusRdData;
-    wire                     S7BusRdy_;
+    wire [`WORD_DATA_BUS]    S7BusRdData = `WORD_DATA_W'h0;
+    wire                     S7BusRdy_ = `DISABLE_;
     wire [`WORD_ADDR_BUS]    S7BusAddr;
     wire                     S7BusAs_;
     wire                     S7BusRW;
@@ -236,7 +236,7 @@ module Processor(
     assign S6BusWrData = SlaveSharedBusWrData;
     assign S7BusWrData = SlaveSharedBusWrData;
 
-    wire [`CPU_IRQ_BUS] IRQ;
+    wire [`CPU_IRQ_BUS] IRQ = `CPU_IRQ_W'h0;
 /*
     wire [`GPIO_IN_BUS] GPIOIn;
     wire [`GPIO_OUT_BUS]  GPIOOut;
