@@ -76,12 +76,16 @@ module Processor(
             end
         end
     end
+    */
+    wire dbgclk;
     
-
     system_clock SystemClock(
         .oscp(oscp),
         .oscn(oscn),
         .reset(1'b0),
+        .clk(clk),
+        .clk_(clk_),
+        .dbgclk(dbgclk),
         .locked(resetOut)
     );
     /*
