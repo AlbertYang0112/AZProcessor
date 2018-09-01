@@ -6,4 +6,5 @@
 !*.s
 !*.coe
 !*.bin
+!*.exe
 !.gitignore
