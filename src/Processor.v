@@ -44,12 +44,17 @@ module Processor(
     output wire [`GPIO_OUT_BUS] GPIOOut
     );
 
+    wire resetOut;
     wire clk;
     wire clk_;
     wire reset_;
     reg [1:0] resetCnt;
-    assign reset_ = (resetCnt == 2'd3 ? `RESET_DISABLE : `RESET_ENABLE);
     
+    //assign reset_ = ~resetIn;
+    assign reset_ = (~resetIn) & resetOut;
+    //assign reset_ = (resetCnt == 2'd3 ? `RESET_DISABLE : `RESET_ENABLE);
+    
+    /*
     always @(posedge clk or `RESET_EDGE resetIn_)
     begin
         if(resetIn_ == `RESET_ENABLE)
@@ -76,8 +81,8 @@ module Processor(
     system_clock SystemClock(
         .oscp(oscp),
         .oscn(oscn),
-        .reset_(resetIn_),
-        .clk(clk)
+        .reset(1'b0),
+        .locked(resetOut)
     );
     /*
     always @(posedge clk or `RESET_EDGE reset_)

@@ -8,17 +8,17 @@ module system_clock(
     input wire oscn,
     input wire reset,
     output wire clk,
-    output wire clk_
+    output wire locked
 );
 
     assign clk_ = ~clk;
     clk_manager ClkManager(
         .clk_out1(clk),     // output clk_out1
         // Status and control signals
-        .resetn(reset_), // input resetn
        // Clock in ports
+       //.reset(reset),
         .clk_in1_p(oscp),    // input clk_in1_p
-        .clk_in1_n(oscn)    // input clk_in1_n
+        .locked(locked)
     );
 
 endmodule
