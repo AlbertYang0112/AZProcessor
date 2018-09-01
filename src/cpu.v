@@ -25,9 +25,7 @@ module cpu(
     output wire                     M1BusAs_,
     output wire                     M1BusRW,
     output wire [`WORD_DATA_BUS]    M1BusWrData,
-    input  wire [`CPU_IRQ_BUS]      IRQ,
-    // For debug
-    output wire [`WORD_ADDR_BUS]    IFPC
+    input  wire [`CPU_IRQ_BUS]      IRQ
 );
 
     wire IFStall;

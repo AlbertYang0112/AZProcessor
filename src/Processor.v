@@ -41,20 +41,7 @@ module Processor(
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire Button2
     */
     input wire [`GPIO_IN_BUS] GPIOIn,
-    output wire [`GPIO_OUT_BUS] GPIOOut,
-    // For debug
-    output wire clk,
-    output wire clk_,
-    output wire [`WORD_DATA_BUS] M0BusRdData,
-    output wire M0BusRdy_,
-    output wire M0BusGrnt_,
-    output wire M0BusReq_,
-    output wire [`WORD_ADDR_BUS] M0BusAddr,
-    output wire M0BusAs_,
-    output wire M0BusRW,
-    output wire [`WORD_DATA_BUS] M0BusWrData,
-    output wire [`WORD_ADDR_BUS] IFPC
-
+    output wire [`GPIO_OUT_BUS] GPIOOut
     );
 
     wire clk;
@@ -275,8 +262,7 @@ module Processor(
         .M1BusAs_(M1BusAs_),
         .M1BusRW(M1BusRW),
         .M1BusWrData(M1BusWrData),
-        .IRQ(IRQ),
-        .IFPC(IFPC)
+        .IRQ(IRQ)
     );
     
     wire [`ROM_ADDR_BUS] ROMBusAddr = S0BusAddr[`ROM_ADDR_LOC];
