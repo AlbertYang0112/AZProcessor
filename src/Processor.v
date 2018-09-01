@@ -29,7 +29,7 @@
 module Processor(
     input wire oscp,
     input wire oscn,
-    input wire resetIn_,
+    input wire resetIn,
     /*(* KEEP = "{TRUE|FALSE |SOFT}" *)output reg UartTX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)input wire UartRX,
     (* KEEP = "{TRUE|FALSE |SOFT}" *)output wire LED0,

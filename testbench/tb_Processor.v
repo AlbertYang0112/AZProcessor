@@ -8,7 +8,7 @@ module tb_Processor();
     parameter cycle = 5;
     reg oscp;
     reg oscn;
-    reg resetIn_;
+    reg resetIn;
     wire [7:0] led;
 
     initial
@@ -25,15 +25,16 @@ module tb_Processor();
     end
     initial
     begin
-        resetIn_ = 1;
+        resetIn = 0;
         #100
-        resetIn_ = 0;
+        resetIn = 1;
         #20
-        resetIn_ = 1;
+        resetIn = 0;
     end
     Processor proc(
         .oscp(oscp),
         .oscn(oscn),
+        .resetIn(resetIn),
         .GPIOOut(led)
     );
 endmodule
