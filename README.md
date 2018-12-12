@@ -1,6 +1,6 @@
 # AZ Processor
 
-This is an implementation of the AZ processor in book *CPU自制入门*.
+This is an implementation of the AZ processor.
 
 Please refer to the book for futher details.
 
@@ -9,7 +9,7 @@ Please refer to the book for futher details.
 - Architecture: RISC
 - Bus Width: 32bits
 - Max Core Frequency: Untested
-- Pipeline: 4-state pipeline *IF->ID->EX->MEM*
+- Pipeline: 5-state pipeline *IF->ID->EX->MEM->WB*
 - Peripheral Device:
   - GPIO Module
   
